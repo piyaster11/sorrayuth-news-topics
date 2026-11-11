@@ -398,7 +398,7 @@
       <ul>
         <li>แหล่งที่มา: โพสต์สาธารณะบนเพจ <a href="https://www.facebook.com/sorrayuth9115" target="_blank" rel="noopener">facebook.com/sorrayuth9115</a> ที่เปิดดูเมื่อ 11 พ.ย. 2026 เวลาไทย (sources = his public page posts viewed Nov 11, 2026, Bangkok time).</li>
         <li>ตัวอย่างที่เก็บได้ 93 โพสต์ ช่วง 14 ต.ค. – 11 พ.ย. 2026 ไม่ใช่สำมะโนทุกโพสต์ ระหว่างเลื่อนฟีด โพสต์ประเภทรูป/ข้อความบางส่วนถูกระบบของเฟซบุ๊กดึงออก คลิปและรีลจึงมีสัดส่วนสูงในตัวอย่าง (video/reel-heavy convenience sample, not a census).</li>
-        <li>ป้ายหัวข้อเป็นการจัดหมวดโดยผู้จัดทำ ไม่ใช่ข้อเท็จจริงที่ยืนยันแล้ว (editorial categories). ไลฟ์รายการ “กรรมกรข่าว คุยนอกจอ” ส่วนใหญ่จัดเป็น “อื่นๆ” เพราะคำโปรยไม่ได้ชี้หัวข้อหลักชัดเจน.</li>
+        <li>ป้ายหัวข้อเป็นการจัดหมวดโดยผู้จัดทำ ไม่ใช่ข้อเท็จจริงที่ยืนยันแล้ว (editorial categories). ไลฟ์รายการ “กรรมกรข่าว คุยนอกจอ” จัดเป็น “รายการสด-โปรโมตรายการ” ไม่ใช่ทักทาย. ในตัวอย่างนี้ไม่มีข้อความทักทายล้วนๆ.</li>
         <li>วันเวลาถอดจากป้ายเวลาที่เห็นบนเพจ ไม่ได้แปลงโซนเวลา รายงานที่นี่ในฐานะเวลาไทย (Bangkok time labels). บางรายการมีข้อความเทียบเคียง เช่น “5 days ago” คู่กับวันที่โดยประมาณ.</li>
         <li>หน้านี้แสดงสิ่งที่ถูกโพสต์ในตัวอย่าง ไม่ได้บอกเหตุผลหรือเจตนา (this shows what was posted, not why).</li>
       </ul>
@@ -417,6 +417,7 @@
       { id: "world news", th: "ข่าวต่างประเทศ", en: "World news", color: "#1a6f9c" },
       { id: "sports", th: "กีฬา", en: "Sports", color: "#0ca678" },
       { id: "personal/lifestyle", th: "ส่วนตัว-ไลฟ์สไตล์", en: "Personal & lifestyle", color: "#f76707" },
+      { id: "livestream/show promo", th: "รายการสด-โปรโมตรายการ", en: "Livestream & show promo", color: "#7048e8" },
       { id: "other", th: "อื่นๆ", en: "Other", color: "#868e96" }
     ];
     const TOPIC = Object.fromEntries(TOPICS.map(t => [t.id, t]));
@@ -462,9 +463,14 @@
         enMore: "Personal stories, lifestyle, food, and daily life."
       },
       {
+        id: "livestream/show promo",
+        thMore: "โพสต์ประกาศไลฟ์หรือโปรโมตรายการ เช่น “กรรมกรข่าว คุยนอกจอ” ไม่ใช่ข้อความทักทาย และไม่ใช่ตัวข่าวในรายการ",
+        enMore: "Posts that announce a livestream or promote a show (such as “กรรมกรข่าว คุยนอกจอ”). These are not greetings, and not the news discussed on the show."
+      },
+      {
         id: "other",
-        thMore: "ส่วนใหญ่เป็นโพสต์ชื่อไลฟ์รายการ “กรรมกรข่าว คุยนอกจอ” ที่คำโปรยไม่ได้ชี้หัวข้อหลักชัดเจน และมีข่าวเบ็ดเตล็ดบางรายการ",
-        enMore: "Mostly daily livestream title posts (“กรรมกรข่าว คุยนอกจอ”) with no single topic, plus a few miscellaneous items."
+        thMore: "โพสต์เบ็ดเตล็ดที่ไม่อยู่หมวดอื่น ในตัวอย่างนี้ไม่มีข้อความทักทายล้วนๆ จึงไม่ได้ตั้งหมวด “ทักทาย / Greetings”",
+        enMore: "Miscellaneous posts that do not fit another topic. This sample has no pure greeting or sign-on messages, so there is no Greetings category."
       }
     ];
     const EXAMPLE_MATCHERS = {
@@ -500,8 +506,12 @@
         { textIncludes: "จุลพันธ์" },
         { url: "https://www.facebook.com/reel/1043386138778411/" }
       ],
-      "other": [
+      "livestream/show promo": [
         { url: "https://www.facebook.com/sorrayuth9115/videos/1885572375937775/" },
+        { url: "https://www.facebook.com/sorrayuth9115/videos/28639521982371132/" }
+      ],
+      "other": [
+        { url: "https://www.facebook.com/reel/2745069382555075/" },
         { url: "https://www.facebook.com/reel/1151062321207300/" }
       ]
     };
@@ -785,13 +795,13 @@
       renderLegend($("legend4"), p4, c4);
       renderTable(c2, p2.length, c4, p4.length);
 
-      const lives2 = p2.filter(isDailyLive).length;
-      const lives4 = p4.filter(isDailyLive).length;
+      const lives2 = p2.filter(p => p.topic === "livestream/show promo").length;
+      const lives4 = p4.filter(p => p.topic === "livestream/show promo").length;
       $("liveNote").textContent =
-        "ในหมวด “อื่นๆ” มีไลฟ์รายการ “กรรมกรข่าว คุยนอกจอ” " + lives2 + " รายการในช่วง 2 สัปดาห์ และ " + lives4 +
-        " รายการในช่วง 4 สัปดาห์ เพราะคำโปรยไม่ได้ชี้หัวข้อหลักชัดเจน " +
-        '("Other" includes ' + lives2 + " daily “กรรมกรข่าว คุยนอกจอ” livestream title posts in the 2-week window and " +
-        lives4 + " in the 4-week window, labelled other because the caption does not identify one main topic).";
+        "ไลฟ์รายการ “กรรมกรข่าว คุยนอกจอ” อยู่ในหมวดรายการสด-โปรโมตรายการ ไม่ใช่ทักทาย (" + lives2 +
+        " โพสต์ในช่วง 2 สัปดาห์ และ " + lives4 + " โพสต์ในช่วง 4 สัปดาห์). ในตัวอย่างนี้ไม่มีข้อความทักทายล้วนๆ จึงไม่ได้ตั้งหมวดทักทาย / " +
+        "Livestream title posts are in “Livestream & show promo,” not Greetings (" + lives2 +
+        " in the 2-week window, " + lives4 + " in the 4-week window). No pure greeting posts were found, so there is no Greetings category.";
 
       renderMeanings(posts);
       renderSpotlight(posts);

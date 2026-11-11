@@ -18,4 +18,4 @@ A 9 November 2026 post in the sample discusses arsenic and heavy-metal pollution
 
 Viewed on the public page on 11 November 2026 (Bangkok time). During scrolling, Facebook virtualized and dropped many photo/text posts, so video and reel posts are over-represented. Dates were read from visible timestamps; three relative timestamps keep their as-shown wording alongside an approximate calendar date.
 
-Categories used: politics, economy, crime, celebrity/entertainment, environment/pollution, world news, sports, personal/lifestyle, other. Each post is in exactly one category.
+Categories used: politics, economy, crime, celebrity/entertainment, environment/pollution, world news, sports, personal/lifestyle, livestream/show promo, other. Each post is in exactly one category. There is no Greetings category because the sample had no pure greeting or sign-on posts; daily livestream titles are labelled livestream/show promo, not greetings.
