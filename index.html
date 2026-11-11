@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>เพจนี้โพสต์เรื่องอะไร — สรยุทธ สุทัศนะจินดา กรรมกรข่าว</title>
+  <meta name="description" content="แดชบอร์ดสรุปหัวข้อโพสต์จากตัวอย่าง 93 โพสต์สาธารณะของเพจ สรยุทธ สุทัศนะจินดา กรรมกรข่าว ช่วง 14 ต.ค.–11 พ.ย. 2026 แสดงสิ่งที่ถูกโพสต์ ไม่ได้บอกเหตุผล">
+  <meta name="robots" content="index,follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&amp;family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #1a1814;
+      --muted: #5c574c;
+      --line: #e4ddd0;
+      --line-strong: #d0c8b8;
+      --navy: #1c3a52;
+      --navy-2: #2a5470;
+      --note: #fff6e0;
+      --note-border: #e8d19a;
+      --note-ink: #5a4514;
+      --env: #1f7a3f;
+      --env-bg: #eef7f0;
+      --celeb: #8a2fa0;
+      --celeb-bg: #f8eefb;
+      --shadow: 0 1px 2px rgba(26,24,20,.06), 0 8px 24px rgba(26,24,20,.05);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Anuphan", "Source Sans 3", "Sarabun", system-ui, sans-serif;
+      font-size: 16.5px;
+      line-height: 1.55;
+    }
+    a { color: var(--navy-2); }
+    a:hover { color: var(--navy); }
+    .wrap { width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 64px; }
+    header.hero { padding: 8px 0 20px; }
+    .kicker {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+    h1 {
+      font-size: clamp(1.7rem, 4vw, 2.35rem);
+      line-height: 1.2;
+      margin: 0 0 6px;
+      letter-spacing: -.02em;
+    }
+    .en-sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 1.02rem;
+      font-weight: 500;
+    }
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      align-items: baseline;
+      color: var(--ink);
+      font-size: 15px;
+    }
+    .page-meta a { font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line-strong); }
+    .page-meta a:hover { border-bottom-color: var(--navy); }
+    .dots { color: var(--muted); }
+    .note {
+      background: var(--note);
+      border: 1px solid var(--note-border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      color: var(--note-ink);
+      margin: 20px 0 22px;
+      font-size: 15px;
+    }
+    .note strong { color: #3d2e0a; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+    .chip {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13.5px;
+      color: var(--muted);
+      box-shadow: 0 1px 0 rgba(255,255,255,.8);
+    }
+    .chip b { color: var(--ink); font-weight: 600; }
+    h2 {
+      font-size: 1.22rem;
+      margin: 0 0 2px;
+      letter-spacing: -.01em;
+    }
+    .section-en { color: var(--muted); font-size: 13.5px; margin: 0 0 14px; }
+    section { margin: 0 0 36px; }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .chart-card { padding: 18px 16px 16px; }
+    .chart-card h3 { margin: 0; font-size: 1.05rem; }
+    .chart-window { color: var(--muted); font-size: 13px; margin: 2px 0 4px; }
+    .chart-n { font-size: 13.5px; margin: 0 0 8px; }
+    .chart-box { position: relative; height: 250px; }
+    .legend { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 5px; }
+    .legend li {
+      display: grid;
+      grid-template-columns: 12px 1fr auto auto;
+      gap: 8px;
+      align-items: center;
+      font-size: 13.5px;
+    }
+    .swatch { width: 12px; height: 12px; border-radius: 3px; }
+    .legend .pct { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 3.4em; text-align: right; }
+    .legend .cnt { font-variant-numeric: tabular-nums; font-weight: 600; min-width: 2em; text-align: right; }
+    .live-note { margin: 12px 0 0; color: var(--muted); font-size: 13.5px; }
+    .table-wrap { overflow-x: auto; }
+    table.counts {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    table.counts th, table.counts td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+    }
+    table.counts th {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .02em;
+      background: #faf7f1;
+    }
+    table.counts th:not(:first-child),
+    table.counts td:not(:first-child) { text-align: right; }
+    table.counts tbody tr:last-child td { border-bottom: 0; }
+    table.counts tfoot td { border-top: 1px solid var(--line-strong); font-weight: 650; background: #faf7f1; }
+    .topic-cell { display: flex; align-items: center; gap: 8px; font-weight: 550; }
+    .bar-cell { min-width: 140px; }
+    .bar-row { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+    .bar-track { width: 72px; height: 8px; background: #eee8dc; border-radius: 99px; overflow: hidden; flex-shrink: 0; }
+    .bar-fill { height: 100%; border-radius: 99px; }
+    .num { font-variant-numeric: tabular-nums; }
+    .spot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .spot { padding: 0; overflow: hidden; }
+    .spot-head { padding: 16px 16px 10px; }
+    .spot-head h3 { margin: 0 0 2px; font-size: 1.08rem; }
+    .spot.env { border-top: 4px solid var(--env); }
+    .spot.celeb { border-top: 4px solid var(--celeb); }
+    .count-pill {
+      display: inline-block;
+      font-size: 12.5px;
+      font-weight: 600;
+      border-radius: 99px;
+      padding: 2px 9px;
+      margin-top: 6px;
+    }
+    .spot.env .count-pill { background: var(--env-bg); color: var(--env); }
+    .spot.celeb .count-pill { background: var(--celeb-bg); color: var(--celeb); }
+    .featured {
+      margin: 0 16px 12px;
+      background: var(--env-bg);
+      border: 1px solid #cfe8d5;
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .featured .tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--env);
+      margin-bottom: 4px;
+    }
+    .featured h4 { margin: 0 0 6px; font-size: 1rem; }
+    .post-item { padding: 12px 16px; border-top: 1px solid var(--line); }
+    .post-item .when { font-size: 13px; color: var(--muted); margin: 0 0 4px; }
+    .post-item p { margin: 0; font-size: 15px; }
+    .post-item a.goto { font-size: 13px; font-weight: 600; text-decoration: none; }
+    .post-item a.goto:hover { text-decoration: underline; }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: linear-gradient(to bottom, var(--bg) 70%, transparent);
+      padding: 8px 0 10px;
+    }
+    .filters input, .filters select {
+      font: inherit;
+      font-size: 15px;
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+      border-radius: 10px;
+      padding: 8px 12px;
+      color: var(--ink);
+    }
+    .filters input { flex: 1 1 220px; min-width: 0; }
+    .filters select { flex: 0 1 auto; }
+    .list-meta { font-size: 13.5px; color: var(--muted); margin: 0 0 8px; }
+    .list { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); box-shadow: var(--shadow); }
+    .row {
+      display: grid;
+      grid-template-columns: 132px 148px 1fr auto;
+      gap: 10px 14px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      align-items: start;
+    }
+    .list .row:first-child { border-top: 0; }
+    .row:nth-child(even) { background: #fbf8f2; }
+    .row .when { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 99px;
+      padding: 2px 8px;
+      line-height: 1.5;
+      white-space: nowrap;
+    }
+    .row .snip { font-size: 14.5px; margin: 0; }
+    .row .goto { font-size: 13px; font-weight: 600; white-space: nowrap; text-decoration: none; padding-top: 2px; }
+    .empty { padding: 20px; color: var(--muted); text-align: center; }
+    footer {
+      border-top: 1px solid var(--line-strong);
+      padding-top: 18px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+    footer h2 { font-size: 15px; color: var(--ink); margin: 0 0 6px; }
+    footer ul { margin: 6px 0 14px; padding-left: 18px; }
+    footer li { margin: 4px 0; }
+    .err { background: #fdecec; border: 1px solid #f0b4b4; color: #7a1c1c; padding: 14px 16px; border-radius: var(--radius); }
+    #app[data-state="loading"] .after-load { display: none; }
+    #app[data-state="ready"] #loading, #app[data-state="error"] #loading { display: none; }
+    #app[data-state="error"] .after-load { display: none; }
+    @media (max-width: 800px) {
+      .charts, .spot-grid { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr auto; }
+      .row .when { grid-column: 1; }
+      .row .pill-wrap { grid-column: 2; justify-self: end; }
+      .row .snip { grid-column: 1 / -1; }
+      .row .goto { grid-column: 1 / -1; }
+      .bar-track { width: 56px; }
+      .wrap { width: min(1080px, calc(100% - 24px)); padding-top: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="app" data-state="loading">
+    <header class="hero">
+      <div class="kicker">แดชบอร์ดหัวข้อข่าว · News-topic dashboard</div>
+      <h1>เพจนี้โพสต์เรื่องอะไร</h1>
+      <p class="en-sub">What the page posts about</p>
+      <div class="page-meta">
+        <a href="https://www.facebook.com/sorrayuth9115" target="_blank" rel="noopener">สรยุทธ สุทัศนะจินดา กรรมกรข่าว</a>
+        <span class="dots">·</span>
+        <span>Journalist</span>
+        <span class="dots">·</span>
+        <span>ผู้ติดตาม 5.4 ล้าน / 5.4M followers</span>
+      </div>
+    </header>
+
+    <div class="note">
+      <strong>ตัวอย่างที่เก็บได้ 93 โพสต์ ช่วง 14 ต.ค. – 11 พ.ย. 2026</strong>
+      (Collected sample of 93 posts, Oct 14 – Nov 11, 2026).
+      เพจนี้มีคลิปและรีลค่อนข้างมากในช่วงที่เก็บข้อมูล ไม่ใช่สำมะโนทุกโพสต์ (video/reel-heavy, not a census).
+      ป้ายหัวข้อเป็นการจัดหมวดโดยผู้จัดทำ (topic labels are editorial categories).
+      หน้านี้แสดงสิ่งที่ถูกโพสต์ ไม่ได้บอกเหตุผล (this shows what was posted, not why).
+      เก็บข้อมูลวันที่ 11 พ.ย. 2026 เวลาไทย (collection date: Nov 11, 2026, Bangkok time).
+    </div>
+
+    <div id="loading" class="card" style="padding:18px;color:var(--muted)">กำลังโหลดข้อมูล… Loading posts.json</div>
+    <div id="error" hidden class="err"></div>
+
+    <div class="after-load">
+      <div class="chips" id="chips"></div>
+
+      <section>
+        <h2>สัดส่วนตามประเภทข่าว</h2>
+        <p class="section-en">Posts by news topic — donut charts, Bangkok time windows</p>
+        <div class="charts">
+          <article class="card chart-card">
+            <h3>2 สัปดาห์ล่าสุด</h3>
+            <p class="chart-window">Last 2 weeks · 28 ต.ค. – 11 พ.ย. 2026 (เวลาไทย)</p>
+            <p class="chart-n" id="n2"></p>
+            <div class="chart-box"><canvas id="chart2" aria-label="Donut chart of topics in the last 2 weeks"></canvas></div>
+            <ul class="legend" id="legend2"></ul>
+          </article>
+          <article class="card chart-card">
+            <h3>4 สัปดาห์ล่าสุด</h3>
+            <p class="chart-window">Last 4 weeks · 14 ต.ค. – 11 พ.ย. 2026 (เวลาไทย)</p>
+            <p class="chart-n" id="n4"></p>
+            <div class="chart-box"><canvas id="chart4" aria-label="Donut chart of topics in the last 4 weeks"></canvas></div>
+            <ul class="legend" id="legend4"></ul>
+          </article>
+        </div>
+        <p class="live-note" id="liveNote"></p>
+      </section>
+
+      <section>
+        <h2>ตารางนับตามหัวข้อ</h2>
+        <p class="section-en">Topic counts for each window</p>
+        <div class="card table-wrap">
+          <table class="counts" id="countTable">
+            <thead>
+              <tr>
+                <th>หัวข้อ / Topic</th>
+                <th>2 สัปดาห์ / 2 weeks</th>
+                <th>4 สัปดาห์ / 4 weeks</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>โฟกัสหัวข้อ</h2>
+        <p class="section-en">Topic spotlight — environment/pollution and celebrity/entertainment</p>
+        <div class="spot-grid">
+          <article class="card spot env" id="spotEnv"></article>
+          <article class="card spot celeb" id="spotCeleb"></article>
+        </div>
+      </section>
+
+      <section>
+        <h2>โพสต์ทั้งหมดในตัวอย่าง</h2>
+        <p class="section-en">All 93 posts in the collected sample — search and filter to verify</p>
+        <div class="filters">
+          <input type="search" id="q" placeholder="ค้นหาข้อความ / Search snippets" aria-label="Search posts">
+          <select id="topicFilter" aria-label="Filter by topic"></select>
+          <select id="windowFilter" aria-label="Filter by time window">
+            <option value="all">ทั้งตัวอย่าง / All sample</option>
+            <option value="2w">2 สัปดาห์ / 2 weeks</option>
+            <option value="4w">4 สัปดาห์ / 4 weeks</option>
+          </select>
+        </div>
+        <p class="list-meta" id="listMeta"></p>
+        <div class="list" id="list"></div>
+      </section>
+    </div>
+
+    <footer>
+      <h2>แหล่งที่มาและข้อจำกัด / Sources and limitations</h2>
+      <ul>
+        <li>แหล่งที่มา: โพสต์สาธารณะบนเพจ <a href="https://www.facebook.com/sorrayuth9115" target="_blank" rel="noopener">facebook.com/sorrayuth9115</a> ที่เปิดดูเมื่อ 11 พ.ย. 2026 เวลาไทย (sources = his public page posts viewed Nov 11, 2026, Bangkok time).</li>
+        <li>ตัวอย่างที่เก็บได้ 93 โพสต์ ช่วง 14 ต.ค. – 11 พ.ย. 2026 ไม่ใช่สำมะโนทุกโพสต์ ระหว่างเลื่อนฟีด โพสต์ประเภทรูป/ข้อความบางส่วนถูกระบบของเฟซบุ๊กดึงออก คลิปและรีลจึงมีสัดส่วนสูงในตัวอย่าง (video/reel-heavy convenience sample, not a census).</li>
+        <li>ป้ายหัวข้อเป็นการจัดหมวดโดยผู้จัดทำ ไม่ใช่ข้อเท็จจริงที่ยืนยันแล้ว (editorial categories). ไลฟ์รายการ “กรรมกรข่าว คุยนอกจอ” ส่วนใหญ่จัดเป็น “อื่นๆ” เพราะคำโปรยไม่ได้ชี้หัวข้อหลักชัดเจน.</li>
+        <li>วันเวลาถอดจากป้ายเวลาที่เห็นบนเพจ ไม่ได้แปลงโซนเวลา รายงานที่นี่ในฐานะเวลาไทย (Bangkok time labels). บางรายการมีข้อความเทียบเคียง เช่น “5 days ago” คู่กับวันที่โดยประมาณ.</li>
+        <li>หน้านี้แสดงสิ่งที่ถูกโพสต์ในตัวอย่าง ไม่ได้บอกเหตุผลหรือเจตนา (this shows what was posted, not why).</li>
+      </ul>
+      <p>ข้อมูลดิบ: <a href="posts.json">posts.json</a></p>
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    const TOPICS = [
+      { id: "politics", th: "การเมือง", en: "Politics", color: "#3b5bdb" },
+      { id: "economy", th: "เศรษฐกิจ", en: "Economy", color: "#f59f00" },
+      { id: "crime", th: "อาชญากรรม", en: "Crime", color: "#e03131" },
+      { id: "celebrity/entertainment", th: "บันเทิง-ดารา", en: "Celebrity & entertainment", color: "#be4bdb" },
+      { id: "environment/pollution", th: "สิ่งแวดล้อม-มลพิษ", en: "Environment & pollution", color: "#2f9e44" },
+      { id: "sports", th: "กีฬา", en: "Sports", color: "#0ca678" },
+      { id: "personal/lifestyle", th: "ส่วนตัว-ไลฟ์สไตล์", en: "Personal & lifestyle", color: "#f76707" },
+      { id: "other", th: "อื่นๆ", en: "Other", color: "#868e96" }
+    ];
+    const TOPIC = Object.fromEntries(TOPICS.map(t => [t.id, t]));
+    const W2 = { start: "2026-10-28", end: "2026-11-11" };
+    const W4 = { start: "2026-10-14", end: "2026-11-11" };
+    const RIVER_URL = "https://www.facebook.com/sorrayuth9115/posts/pfbid02oAiYTQ9gmjGj8ceH7TodGpNV2q3ZVodDx7nQBj9APAUbD5b8vTC8YwHszBJuWKDEl";
+    const MONTHS_TH = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+
+    const app = document.getElementById("app");
+    const $ = (id) => document.getElementById(id);
+
+    function dayKey(dateStr) {
+      const m = String(dateStr || "").match(/^(\d{4}-\d{2}-\d{2})/);
+      return m ? m[1] : null;
+    }
+    function inWindow(post, win) {
+      const d = dayKey(post.date);
+      return d && d >= win.start && d <= win.end;
+    }
+    function parseStamp(dateStr) {
+      const m = String(dateStr || "").match(/^(\d{4})-(\d{2})-(\d{2})(?:\s+(\d{2}):(\d{2}))?(.*)$/);
+      if (!m) return { key: null, label: dateStr || "" };
+      const y = m[1], mo = +m[2], d = +m[3];
+      const th = d + " " + MONTHS_TH[mo - 1] + " " + y;
+      let label = th;
+      if (m[4]) label += " " + m[4] + ":" + m[5] + " น.";
+      const extra = (m[6] || "").trim();
+      if (extra) label += " " + extra;
+      return { key: y + "-" + m[2] + "-" + m[3], label: label, sort: dateStr };
+    }
+    function fmtRange(a, b) {
+      const A = parseStamp(a + " 00:00");
+      const B = parseStamp(b + " 00:00");
+      return A.label.replace(" 00:00 น.", "") + " – " + B.label.replace(" 00:00 น.", "");
+    }
+    function counts(posts) {
+      const c = {};
+      TOPICS.forEach(t => c[t.id] = 0);
+      posts.forEach(p => { c[p.topic] = (c[p.topic] || 0) + 1; });
+      return c;
+    }
+    function pct(n, total) {
+      if (!total) return "0%";
+      return (100 * n / total).toFixed(1) + "%";
+    }
+    function escapeHtml(s) {
+      return String(s ?? "").replace(/[&<>"']/g, ch => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[ch]));
+    }
+    function postUrl(p) { return p.url || p.link || ""; }
+
+    function isDailyLive(p) {
+      const t = p.text || "";
+      return /^Live\b/i.test(t) && t.indexOf("กรรมกรข่าว") !== -1;
+    }
+
+    let chart2, chart4;
+
+    function doughnutConfig(posts, countsMap) {
+      const total = posts.length;
+      const used = TOPICS.filter(t => countsMap[t.id] > 0);
+      return {
+        type: "doughnut",
+        data: {
+          labels: used.map(t => t.th + " / " + t.en),
+          datasets: [{
+            data: used.map(t => countsMap[t.id]),
+            backgroundColor: used.map(t => t.color),
+            borderColor: "#fffdf8",
+            borderWidth: 2,
+            hoverOffset: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: "58%",
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function (ctx) {
+                  const n = ctx.parsed;
+                  return " " + ctx.label + ": " + n + " โพสต์ (" + pct(n, total) + ")";
+                }
+              }
+            }
+          }
+        }
+      };
+    }
+
+    function renderLegend(el, posts, c) {
+      const total = posts.length;
+      el.innerHTML = TOPICS.filter(t => c[t.id] > 0).map(t => {
+        return '<li><span class="swatch" style="background:' + t.color + '"></span>' +
+          '<span>' + escapeHtml(t.th) + ' <span style="color:var(--muted);font-weight:400">/ ' + escapeHtml(t.en) + '</span></span>' +
+          '<span class="cnt">' + c[t.id] + '</span>' +
+          '<span class="pct">' + pct(c[t.id], total) + '</span></li>';
+      }).join("");
+    }
+
+    function renderTable(c2, n2, c4, n4) {
+      const tb = document.querySelector("#countTable tbody");
+      const tf = document.querySelector("#countTable tfoot");
+      tb.innerHTML = TOPICS.map(t => {
+        const a = c2[t.id] || 0, b = c4[t.id] || 0;
+        const w2 = n2 ? (100 * a / n2) : 0;
+        const w4 = n4 ? (100 * b / n4) : 0;
+        return '<tr>' +
+          '<td><div class="topic-cell"><span class="swatch" style="background:' + t.color + '"></span>' +
+            escapeHtml(t.th) + '<span style="color:var(--muted);font-weight:400"> / ' + escapeHtml(t.en) + '</span></div></td>' +
+          '<td class="bar-cell"><div class="bar-row"><span class="num">' + a + ' <span style="color:var(--muted);font-weight:400">(' + pct(a, n2) + ')</span></span>' +
+            '<div class="bar-track" title="' + pct(a, n2) + '"><div class="bar-fill" style="width:' + w2 + '%;background:' + t.color + '"></div></div></div></td>' +
+          '<td class="bar-cell"><div class="bar-row"><span class="num">' + b + ' <span style="color:var(--muted);font-weight:400">(' + pct(b, n4) + ')</span></span>' +
+            '<div class="bar-track" title="' + pct(b, n4) + '"><div class="bar-fill" style="width:' + w4 + '%;background:' + t.color + '"></div></div></div></td>' +
+          '</tr>';
+      }).join("");
+      tf.innerHTML = '<tr><td>รวม / Total</td><td class="num">' + n2 + '</td><td class="num">' + n4 + '</td></tr>';
+    }
+
+    function renderPostBlock(p, opts) {
+      opts = opts || {};
+      const stamp = parseStamp(p.date);
+      const url = postUrl(p);
+      const link = url
+        ? '<div><a class="goto" href="' + escapeHtml(url) + '" target="_blank" rel="noopener">เปิดโพสต์ / Open post ↗</a></div>'
+        : '<div style="color:var(--muted);font-size:13px">ไม่มีลิงก์ในตัวอย่าง / No URL in sample</div>';
+      const text = escapeHtml(p.text || "").replace(/\n/g, "<br>");
+      if (opts.featured) {
+        return '<div class="featured" id="river-post">' +
+          '<div class="tag">โพสต์เด่น · Featured · 9 พ.ย. 2026</div>' +
+          '<h4>มลพิษแม่น้ำสาย — สารหนูและโลหะหนัก</h4>' +
+          '<p class="when" style="margin:0 0 8px">Mae Sai River arsenic / heavy-metal pollution · ' + escapeHtml(stamp.label) + ' เวลาไทย</p>' +
+          '<p style="margin:0 0 8px;font-size:15px">' + text + '</p>' + link +
+          '</div>';
+      }
+      return '<div class="post-item">' +
+        '<p class="when">' + escapeHtml(stamp.label) + ' · เวลาไทย</p>' +
+        '<p>' + text + '</p>' + link +
+        '</div>';
+    }
+
+    function renderSpotlight(all) {
+      const env = all.filter(p => p.topic === "environment/pollution")
+        .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+      const celeb = all.filter(p => p.topic === "celebrity/entertainment")
+        .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+      const river = env.find(p => (p.url === RIVER_URL) || /แม่น้ำสาย|สารหนู/.test(p.text || ""));
+      const envRest = env.filter(p => p !== river);
+
+      $("spotEnv").innerHTML =
+        '<div class="spot-head">' +
+          '<h3>สิ่งแวดล้อม-มลพิษ</h3>' +
+          '<div class="section-en" style="margin:0">Environment &amp; pollution</div>' +
+          '<span class="count-pill">ในตัวอย่าง ' + env.length + ' โพสต์ / ' + env.length + ' in the sample</span>' +
+        '</div>' +
+        (river ? renderPostBlock(river, { featured: true }) : "") +
+        envRest.map(p => renderPostBlock(p)).join("") +
+        (env.length === 0 ? '<div class="post-item">ไม่พบโพสต์ในหมวดนี้</div>' : "");
+
+      $("spotCeleb").innerHTML =
+        '<div class="spot-head">' +
+          '<h3>บันเทิง-ดารา</h3>' +
+          '<div class="section-en" style="margin:0">Celebrity &amp; entertainment</div>' +
+          '<span class="count-pill">ในตัวอย่าง ' + celeb.length + ' โพสต์ / ' + celeb.length + ' in the sample</span>' +
+        '</div>' +
+        celeb.map(p => renderPostBlock(p)).join("") +
+        (celeb.length === 0 ? '<div class="post-item">ไม่พบโพสต์ในหมวดนี้</div>' : "");
+    }
+
+    function pillHtml(topicId) {
+      const t = TOPIC[topicId] || { th: topicId, en: topicId, color: "#868e96" };
+      const bg = t.color + "22";
+      return '<span class="pill" style="background:' + bg + ';color:' + t.color + '">' +
+        escapeHtml(t.th) + '</span>';
+    }
+
+    function renderList(posts) {
+      const q = ($("q").value || "").trim().toLowerCase();
+      const topic = $("topicFilter").value;
+      const win = $("windowFilter").value;
+      let rows = posts.slice();
+      if (win === "2w") rows = rows.filter(p => inWindow(p, W2));
+      if (win === "4w") rows = rows.filter(p => inWindow(p, W4));
+      if (topic !== "all") rows = rows.filter(p => p.topic === topic);
+      if (q) {
+        rows = rows.filter(p =>
+          (p.text || "").toLowerCase().indexOf(q) !== -1 ||
+          (p.topic || "").toLowerCase().indexOf(q) !== -1 ||
+          (p.date || "").toLowerCase().indexOf(q) !== -1
+        );
+      }
+      rows.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+      $("listMeta").textContent = "แสดง " + rows.length + " จาก " + posts.length + " โพสต์ในตัวอย่าง  ·  Showing " + rows.length + " of " + posts.length;
+      if (!rows.length) {
+        $("list").innerHTML = '<div class="empty">ไม่พบโพสต์ที่ตรงกับตัวกรอง / No matching posts</div>';
+        return;
+      }
+      $("list").innerHTML = rows.map(p => {
+        const stamp = parseStamp(p.date);
+        const url = postUrl(p);
+        const snip = escapeHtml(p.text || "").replace(/\n/g, " ");
+        const link = url
+          ? '<a class="goto" href="' + escapeHtml(url) + '" target="_blank" rel="noopener">เปิดโพสต์ ↗</a>'
+          : '<span class="goto" style="color:var(--muted);font-weight:400">ไม่มีลิงก์</span>';
+        return '<div class="row">' +
+          '<div class="when">' + escapeHtml(stamp.label) + '</div>' +
+          '<div class="pill-wrap">' + pillHtml(p.topic) + '</div>' +
+          '<p class="snip">' + snip + '</p>' +
+          link +
+          '</div>';
+      }).join("");
+    }
+
+    function build(posts) {
+      posts = posts.slice().sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+      const p2 = posts.filter(p => inWindow(p, W2));
+      const p4 = posts.filter(p => inWindow(p, W4));
+      const c2 = counts(p2);
+      const c4 = counts(p4);
+
+      $("chips").innerHTML =
+        '<span class="chip">ตัวอย่าง / Sample: <b>' + posts.length + ' โพสต์</b></span>' +
+        '<span class="chip">ช่วงข้อมูล / Range: <b>14 ต.ค. – 11 พ.ย. 2026</b> เวลาไทย</span>' +
+        '<span class="chip">วันที่เก็บ / Collected: <b>11 พ.ย. 2026</b></span>' +
+        '<span class="chip">2 สัปดาห์: <b>' + p2.length + ' โพสต์</b></span>' +
+        '<span class="chip">4 สัปดาห์: <b>' + p4.length + ' โพสต์</b></span>';
+
+      $("n2").textContent = p2.length + " โพสต์ในหน้าต่างนี้ / " + p2.length + " posts in this window";
+      $("n4").textContent = p4.length + " โพสต์ในหน้าต่างนี้ / " + p4.length + " posts in this window";
+
+      if (chart2) chart2.destroy();
+      if (chart4) chart4.destroy();
+      chart2 = new Chart($("chart2"), doughnutConfig(p2, c2));
+      chart4 = new Chart($("chart4"), doughnutConfig(p4, c4));
+      renderLegend($("legend2"), p2, c2);
+      renderLegend($("legend4"), p4, c4);
+      renderTable(c2, p2.length, c4, p4.length);
+
+      const lives2 = p2.filter(isDailyLive).length;
+      const lives4 = p4.filter(isDailyLive).length;
+      $("liveNote").textContent =
+        "ในหมวด “อื่นๆ” มีไลฟ์รายการ “กรรมกรข่าว คุยนอกจอ” " + lives2 + " รายการในช่วง 2 สัปดาห์ และ " + lives4 +
+        " รายการในช่วง 4 สัปดาห์ เพราะคำโปรยไม่ได้ชี้หัวข้อหลักชัดเจน " +
+        '("Other" includes ' + lives2 + " daily “กรรมกรข่าว คุยนอกจอ” livestream title posts in the 2-week window and " +
+        lives4 + " in the 4-week window, labelled other because the caption does not identify one main topic).";
+
+      renderSpotlight(posts);
+
+      const sel = $("topicFilter");
+      sel.innerHTML = '<option value="all">ทุกหัวข้อ / All topics</option>' +
+        TOPICS.map(t => '<option value="' + t.id + '">' + escapeHtml(t.th) + " / " + escapeHtml(t.en) + "</option>").join("");
+
+      const redraw = () => renderList(posts);
+      $("q").addEventListener("input", redraw);
+      $("topicFilter").addEventListener("change", redraw);
+      $("windowFilter").addEventListener("change", redraw);
+      renderList(posts);
+
+      app.dataset.state = "ready";
+    }
+
+    fetch("posts.json", { cache: "no-store" })
+      .then(r => {
+        if (!r.ok) throw new Error("Could not load posts.json (" + r.status + ")");
+        return r.json();
+      })
+      .then(data => {
+        if (!Array.isArray(data) || !data.length) throw new Error("posts.json is empty");
+        build(data);
+      })
+      .catch(err => {
+        app.dataset.state = "error";
+        const box = $("error");
+        box.hidden = false;
+        box.textContent = "โหลดข้อมูลไม่สำเร็จ / Failed to load data: " + err.message;
+      });
+  })();
+  </script>
+</body>
+</html>
